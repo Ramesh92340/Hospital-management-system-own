@@ -11837,47 +11837,7 @@ a:focus {
     line-height: normal;
   }
 
-  .p_tag {
-    margin-left: 30px;
-
-    /* display: inline; */
-    color: white;
-    font-family: "Readex Pro";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-
-  /* Initial styles */
-  .li_tag .anc_tag .p_tag,
-  .li_tag .anc_tag .icon_tag {
-    color: black;
-    fill: black;
-    /* This is for the SVG icon color */
-  }
-
-  .p_tag:hover {
-    padding-top: 9px;
-    padding-bottom: 9px;
-    padding-left: 10px;
-    background-color: black;
-    border-radius: 6px;
-  }
-
-  .anc_tag:hover .p_tag,
-  .anc_tag:hover .icon_tag {
-    color: white;
-    transition: all 0.4s;
-  }
-
-  /* Specific style for SVG icon fill on hover */
-  .p_tag:hover .icon_tag path {
-    fill: white;
-
-    /* This targets the SVG path to change its color */
-  }
-
+ 
   .need_sapce {
     margin: 10px;
     margin-left: 30px;

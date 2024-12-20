@@ -70,6 +70,49 @@ p.p_tag:hover {
   padding: 10px 5px 10px 15px;
   height: 47px;
 }
+
+
+.p_tag {
+  margin-left: 30px;
+
+  /* display: inline; */
+  color: white;
+  font-family: "Readex Pro";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+/* Initial styles */
+.li_tag .anc_tag .p_tag,
+.li_tag .anc_tag .icon_tag {
+  color: black;
+  fill: black;
+  /* This is for the SVG icon color */
+}
+
+.p_tag:hover {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 10px;
+  background-color: black;
+  border-radius: 6px;
+}
+
+.anc_tag:hover .p_tag,
+.anc_tag:hover .icon_tag {
+  color: white;
+  transition: all 0.4s;
+}
+
+/* Specific style for SVG icon fill on hover */
+.p_tag:hover .icon_tag path {
+  fill: white;
+
+  /* This targets the SVG path to change its color */
+}
+
 .table-container {
   display: none;
 }
@@ -85,11 +128,72 @@ p.p_tag:hover {
 .table-container.active {
   display: block;
 }
-
-
-
 
 .edit_h_tag{
   text-align: center;
   margin: 30px 0px;
+}
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+/* Default styling for the menu item */
+.menu-item.menu_tag {
+  background-color: transparent; /* Transparent background */
+  transition: all 0.3s ease; /* Smooth transition for hover and active states */
+  display: flex; /* Use Flexbox */
+  justify-content: left; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  /* height: 100%;   */
+  padding-top: 15px   ; /* Add padding for better spacing */
+  padding-left: 20px;
+}
+
+/* Default styling for the menu link */
+.menu-item.menu_tag .menu-link.link_tag {
+  color: black; /* Default text color */
+  text-align: center; /* Center align text */
+  display: flex; /* Use Flexbox */
+  
+  justify-content: center; /* Center text and icon horizontally */
+  align-items: center; /* Center text and icon vertically */
+  padding: 0; /* Remove default padding for alignment */
+}
+
+/* Icon inside the menu */
+.menu-item.menu_tag .menu-link.link_tag i {
+  margin-right: 8px; /* Space between icon and text */
+  color: black; /* Default icon color */
+}
+
+/* Hover effect for the menu item */
+.menu-item.menu_tag:hover {
+  background-color: black; /* Black background on hover */
+}
+
+.menu-item.menu_tag:hover .menu-link.link_tag,
+.menu-item.menu_tag:hover .menu-link.link_tag i {
+  text-decoration: none;
+  color: white; /* White text and icon on hover */
+}
+
+/* Active state for the menu item */
+.menu-item.menu_tag.active {
+  background-color: black; /* Black background when active */
+  
+}
+
+.menu-item.menu_tag.active .menu-link.link_tag,
+.menu-item.menu_tag.active .menu-link.link_tag i {
+  color: white; /* White text and icon when active */
 }
