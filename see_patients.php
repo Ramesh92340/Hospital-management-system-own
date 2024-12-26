@@ -9,21 +9,34 @@ ob_start(); // Start output buffering
     include "includes/header.php";
     include "config/db.php";
 
-    // Fetch all doctors
+    // Initialize search query and results
+    $searchTerm = '';
     try {
-        $doctorsQuery = "SELECT * FROM patients WHERE status = 1";   
-        $doctorsResult = $pdo->query($doctorsQuery);
+        if (isset($_POST['search'])) {
+            $searchTerm = trim($_POST['search']);
+            $doctorsQuery = "SELECT * FROM patients WHERE status = 1 AND 
+                (name LIKE :searchTerm OR 
+                 age LIKE :searchTerm OR 
+                 gender LIKE :searchTerm OR 
+                 contact LIKE :searchTerm OR 
+                 address LIKE :searchTerm OR 
+                 medical_history LIKE :searchTerm)";
+            $stmt = $pdo->prepare($doctorsQuery);
+            $stmt->execute(['searchTerm' => "%$searchTerm%"]);
+        } else {
+            $doctorsQuery = "SELECT * FROM patients WHERE status = 1";
+            $stmt = $pdo->query($doctorsQuery);
+        }
     } catch (PDOException $e) {
-        die("Error fetching doctors: " . $e->getMessage());
+        die("Error fetching patients: " . $e->getMessage());
     }
-
-
     ?>
 
     <div id="content-wrapper" class="d-flex flex-column bg-white">
         <div id="content">
             <div class="container branch_container">
                 <div class="row">
+
                     <div class="col-md-4 col-lg-2 ul_border mb-4">
                         <?php
                         $activeTable = 'adddoctorTable';
@@ -59,6 +72,7 @@ ob_start(); // Start output buffering
 
                             document.getElementById('adddoctorTable').classList.add('active');
                         </script>
+
                     </div>
 
                     <div class="col-md-11 col-lg-12 ul_border">
@@ -66,9 +80,10 @@ ob_start(); // Start output buffering
                         <div id="adddoctorTable" class="table-container <?= $activeTable == 'adddoctorTable' ? 'active' : '' ?>">
                             <div class="container">
                                 <div class="row d-flex flex-row justify-content-between pt-4 pb-3">
-                                    <div class="">
-                                        <h6 class="staff_dtls"> </h6>
-                                    </div>
+                                    <form method="post" class="d-flex">
+                                        <input type="text" name="search" class="form-control me-2" placeholder="Search Patients..." value="<?= htmlspecialchars($searchTerm) ?>">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </form>
                                 </div>
                             </div>
 
@@ -82,25 +97,21 @@ ob_start(); // Start output buffering
                                         <th>Phone</th>
                                         <th>Address</th>
                                         <th>Medical History</th>
-
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if ($doctorsResult->rowCount() > 0): ?>
+                                    <?php if ($stmt->rowCount() > 0): ?>
                                         <?php $serial = 1; ?> <!-- Initialize serial number -->
-                                        <?php foreach ($doctorsResult as $row): ?>
+                                        <?php foreach ($stmt as $row): ?>
                                             <tr>
                                                 <td><?= $serial++; ?></td>
                                                 <td><?= htmlspecialchars($row['name']); ?></td>
                                                 <td><?= htmlspecialchars($row['age']); ?></td>
                                                 <td><?= htmlspecialchars($row['gender']); ?></td>
-
                                                 <td><?= htmlspecialchars($row['contact']); ?></td>
                                                 <td><?= htmlspecialchars($row['address']); ?></td>
                                                 <td><?= htmlspecialchars($row['medical_history']); ?></td>
-
-
                                                 <td>
                                                     <a href="edit_patients.php?id=<?= $row['id']; ?>&type=patients" class="btn btn-warning btn-sm">Edit</a>
                                                     <a href="delete_patients.php?id=<?= $row['id']; ?>&type=patients" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this patient?')">Delete</a>
@@ -109,7 +120,7 @@ ob_start(); // Start output buffering
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="7" class="text-center">No Patient members found</td>
+                                            <td colspan="8" class="text-center">No Patient members found</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
@@ -117,9 +128,8 @@ ob_start(); // Start output buffering
 
                         </div>
 
-
-
                     </div>
+
                 </div>
             </div>
         </div>
