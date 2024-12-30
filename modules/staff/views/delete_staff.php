@@ -1,10 +1,9 @@
 <?php
-include "config/db.php";
+include "../../../config/db.php";
 
 // Validate the 'id' and 'type' parameters
 if (!isset($_GET['id']) || !is_numeric($_GET['id']) || !isset($_GET['type'])) {
-    echo '<script>alert("Invalid Request")</script>';
-    echo '<script>window.location.href="see_staff.php"</script>';
+    echo json_encode(['status' => 'error', 'message' => 'Invalid Request']);
     exit;
 }
 
@@ -14,10 +13,9 @@ $type = $_GET['type']; // Get the 'type' parameter (e.g., 'doctor' or 'nurse')
 // Determine the table to update based on the type
 $table = ($type === 'doctor') ? 'doctors' : (($type === 'nurse') ? 'nurses' : null);
 
-// If the table is invalid, redirect with an error
+// If the table is invalid, return error
 if ($table === null) {
-    echo '<script>alert("Invalid Type")</script>';
-    echo '<script>window.location.href="see_staff.php"</script>';
+    echo json_encode(['status' => 'error', 'message' => 'Invalid Type']);
     exit;
 }
 
@@ -28,13 +26,11 @@ try {
     $stmt->bindParam(':id', $delId, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
-        echo '<script>alert("Deleted Successfully")</script>';
-        echo '<script>window.location.href="see_staff.php"</script>';
+        echo json_encode(['status' => 'success', 'message' => 'Deleted Successfully']);
     } else {
-        echo '<script>alert("Failed to Delete")</script>';
+        echo json_encode(['status' => 'error', 'message' => 'Failed to Delete']);
     }
 } catch (PDOException $e) {
-    echo '<script>alert("Error: ' . $e->getMessage() . '")</script>';
-    echo '<script>window.location.href="see_staff.php"</script>';
+    echo json_encode(['status' => 'error', 'message' => 'Error: ' . $e->getMessage()]);
 }
 ?>

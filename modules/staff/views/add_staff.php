@@ -5,9 +5,9 @@ ob_start(); // Start output buffering
 <div id="wrapper">
 
     <?php
-    include "includes/sidebar.php";
-    include "includes/header.php";
-    include "config/db.php";
+       include '../../../includes/sidebar.php';
+       include "../../../includes/header.php";
+       include "../../../config/db.php";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['submit_doc_btn'])) {
@@ -24,7 +24,7 @@ ob_start(); // Start output buffering
                 echo "<script>alert('Only JPG, JPEG, PNG & GIF files are allowed.')</script>";
             } else {
                 // Move uploaded file
-                $targetimg = "assets/uploads/doctors/";
+                $targetimg = "../../../assets/uploads/doctors/";
                 $imgrename = date('Ymd') . rand(1, 1000000) . '.' . $imageFileType;
                 if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetimg . $imgrename)) {
                     try {
@@ -63,7 +63,7 @@ ob_start(); // Start output buffering
             if (!in_array($imageFileType, ['jpg', 'jpeg', 'png', 'gif'])) {
                 echo "<script>alert('Only JPG, JPEG, PNG & GIF files are allowed.')</script>";
             } else {
-                $targetimg = "assets/uploads/nurses/";
+                $targetimg = "../../../assets/uploads/nurses/";
                 $imgrename = date('Ymd') . rand(1, 1000000) . '.' . $imageFileType;
                 if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetimg . $imgrename)) {
                     try {
@@ -310,7 +310,7 @@ ob_start(); // Start output buffering
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <?php
-    include "includes/footer.php";
+    include "../../../includes/footer.php";
     ?>
 
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>

@@ -7,9 +7,9 @@ ob_start(); // Start output buffering
 
     <?php
 
-        include "includes/sidebar.php";
-        include "includes/header.php";
-        include "config/db.php";
+include '../../../includes/sidebar.php';
+include "../../../includes/header.php";
+include "../../../config/db.php";
 
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $patient_id = $_GET['id'];
@@ -21,14 +21,14 @@ ob_start(); // Start output buffering
                 $patient = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if (!$patient) {
-                    echo '<script>alert("Patient not found."); window.location.href = "see_patients.php";</script>';
+                    echo '<script>alert("Patient not found."); window.location.href = "./see_patients.php";</script>';
                     exit();
                 }
             } catch (PDOException $e) {
                 echo '<script>alert("Error: ' . htmlspecialchars($e->getMessage()) . '");</script>';
             }
         } else {
-            echo '<script>alert("Invalid Patient ID."); window.location.href = "see_patients.php";</script>';
+            echo '<script>alert("Invalid Patient ID."); window.location.href = "./see_patients.php";</script>';
             exit();
         }
 
@@ -62,7 +62,7 @@ ob_start(); // Start output buffering
                             ':id' => $patient_id
                         ]);
 
-                        echo '<script>alert("Patient details updated successfully."); window.location.href = "see_patients.php";</script>';
+                        echo '<script>alert("Patient details updated successfully."); window.location.href = "./see_patients.php";</script>';
                         exit();
                     } catch (PDOException $e) {
                         echo '<script>alert("Error: ' . htmlspecialchars($e->getMessage()) . '");</script>';
@@ -156,5 +156,5 @@ ob_start(); // Start output buffering
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <?php include "includes/footer.php"; ?>
+    <?php include "../../../includes/footer.php"; ?>
 </div>

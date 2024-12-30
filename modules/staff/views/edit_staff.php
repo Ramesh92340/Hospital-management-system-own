@@ -6,9 +6,9 @@ ob_start(); // Start output buffering
 
     <?php
 
-    include "includes/sidebar.php";
-    include "includes/header.php";
-    include "config/db.php";
+    include "../../../includes/sidebar.php";
+    include "../../../includes/header.php";
+    include "../../../config/db.php";
 
    
     if (!isset($_GET['id']) || !isset($_GET['type'])) {
@@ -20,7 +20,7 @@ ob_start(); // Start output buffering
 
     // Determine the table and redirect path
     $table = $type === 'nurse' ? 'nurses' : 'doctors';
-    $redirectPath = $type === 'nurse' ? 'see_staff.php?type=nurse' : 'see_staff.php?type=doctor';
+    $redirectPath = $type === 'nurse' ? './see_staff.php?type=nurse' : './see_staff.php?type=doctor';
 
     // Fetch the staff details
     try {
@@ -132,7 +132,7 @@ ob_start(); // Start output buffering
                                         <label class="control-label mb-2 field_txt" for="photo">Photo</label>
                                         <input type="file" name="photo" id="photo" class="form-control field_input_bg">
                                         <?php if (!empty($staff['photo'])): ?>
-                                            <img src="assets/uploads/<?= htmlspecialchars($table); ?>/<?= htmlspecialchars($staff['photo']); ?>" alt="Current Photo" width="100">
+                                            <img src="../../../assets/uploads/<?= htmlspecialchars($table); ?>/<?= htmlspecialchars($staff['photo']); ?>" alt="Current Photo" width="100">
                                         <?php else: ?>
                                             <span>No photo available</span>
                                         <?php endif; ?>
@@ -166,7 +166,7 @@ ob_start(); // Start output buffering
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <?php
-    include "includes/footer.php";
+    include "../../../includes/footer.php";
     ?>
 
 

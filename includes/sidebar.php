@@ -12,7 +12,7 @@
 <ul class="navbar-nav   sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #F4F5F9;">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center  bg-light text-primary" href="./index.php">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center  bg-light text-primary" href="index.php">
         <div class="sidebar-brand-icon  ">
             <!-- <i class="fas fa-stethoscope"></i> -->
         </div>
@@ -65,7 +65,7 @@
 
 
     <li class="menu-item menu_tag ">
-        <a class="menu-link collapsed link_tag" href="index.php">
+        <a class="menu-link collapsed link_tag" href="/Hospital-management-system-own/public/index.php">
             <p class="menu-content">
                  
                 <i class="fa-solid fa-house"></i>
@@ -76,7 +76,7 @@
 
 
     <li class="menu-item menu_tag">
-        <a class="menu-link collapsed link_tag" href="add_patients.php">
+        <a class="menu-link collapsed link_tag" href="/Hospital-management-system-own/modules/patients/views/add_patients.php">
             <p class="menu-content">
             <i class="fa-solid fa-users"></i>
                 Add Patients
@@ -84,7 +84,7 @@
         </a>
     </li>
     <li class="menu-item menu_tag">
-        <a class="menu-link collapsed link_tag" href="see_patients.php">
+        <a class="menu-link collapsed link_tag" href="/Hospital-management-system-own/modules/patients/views/see_patients.php">
             <p class="menu-content">
             <i class="fa-solid fa-users"></i>
                 View Patients
@@ -118,7 +118,7 @@
     </li> -->
 
     <li class="menu-item menu_tag">
-        <a class="menu-link collapsed link_tag" href="add_staff.php">
+        <a class="menu-link collapsed link_tag" href="/Hospital-management-system-own/modules/staff/views/add_staff.php">
             <p class="menu-content">
                 <i class="fa-solid fa-user-doctor"></i>
                 Add Staff
@@ -128,7 +128,7 @@
 
 
     <li class="menu-item menu_tag">
-        <a class="menu-link collapsed link_tag" href="see_staff.php">
+        <a class="menu-link collapsed link_tag" href="/Hospital-management-system-own/modules/staff/views/see_staff.php">
             <p class="menu-content">
                 <i class="fa-solid fa-user-doctor"></i>
                 See Staff
