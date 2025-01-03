@@ -27,7 +27,9 @@ ob_start(); // Start output buffering
     <link href="/Hospital-management-system-own/assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/Hospital-management-system-own/assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+     
 </head>
 
 <body>

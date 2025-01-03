@@ -12797,6 +12797,7 @@ body.sidebar-toggled footer.sticky-footer {
 .branch_container {
   display: flex;
   width: 100%; /* Ensure container takes full width */
+ 
 }
 
 .branch_border {
@@ -12826,6 +12827,7 @@ body.sidebar-toggled footer.sticky-footer {
   border: 0.5px solid #9a9a9a;
   background: #fff;
   box-shadow: 0px 12px 36px 0px rgba(220, 224, 249, 0.25);
+  
 }
 .ul_border:last-child {
   margin-right: 0; 
