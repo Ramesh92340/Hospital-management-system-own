@@ -41,11 +41,9 @@ ob_start(); // Start output buffering
                         </tr>
                     </thead>
                     <tbody id="patientTableBody">
-                        <?php
-                        $serial_number = 1; // Initialize serial number
-                        foreach ($casualty_patients as $patient): ?>
-                            <tr class="text-center" id="patient-row-<?php echo $patient['id']; ?>">
-                                <td><?php echo $serial_number++; ?></td> <!-- Display serial number -->
+                        <?php foreach ($casualty_patients as $patient): ?>
+                            <tr class="text-center patient-row" id="patient-row-<?php echo $patient['id']; ?>">
+                                <td class="serial-number"></td> <!-- Serial number will be set dynamically -->
                                 <td><?php echo htmlspecialchars($patient['name']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['age']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['gender']); ?></td>
@@ -53,39 +51,33 @@ ob_start(); // Start output buffering
                                 <td><?php echo htmlspecialchars($patient['contact']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['address']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['medical_history']); ?></td>
-
                                 <td>
                                     <?php
-                                    // Check if documents are available
                                     if (!empty($patient['documents'])) {
-                                        // Split the documents column if there are multiple files
                                         $documents = explode(',', $patient['documents']);
                                         foreach ($documents as $document) {
-                                            // Display the download link for each document
                                             echo "<a href='" . htmlspecialchars($document) . "' download>Download Document</a><br>";
                                         }
                                     } else {
-                                        // Display 'No Documents' if the documents field is empty
                                         echo "No Documents";
                                     }
                                     ?>
                                 </td>
 
                                 <td class="text-center">
-                                    <!-- Dropdown for Actions -->
                                     <div class="dropdown">
                                         <p class="see_more_actions" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                             . . .
                                         </p>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Add to IDP</a></li>
+                                            <li><a class="dropdown-item" href="add_to_idp.php?id=<?php echo $patient['id']; ?>"><i class="fa-solid fa-plus"></i> Add to IDP</a></li>
                                             <li><a class="dropdown-item" href="edit_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</a></li>
                                             <li><a class="dropdown-item" href="view_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-regular fa-eye"></i> View Details</a></li>
                                             <li>
-                                                <a class="dropdown-item delete-patient" 
-                                                   href="delete_patient.php?id=<?php echo $patient['id']; ?>" 
-                                                   data-id="<?php echo $patient['id']; ?>">
-                                                   <i class="fa-solid fa-trash-can"></i> Delete
+                                                <a class="dropdown-item delete-patient"
+                                                    href="delete_patient.php?id=<?php echo $patient['id']; ?>"
+                                                    data-id="<?php echo $patient['id']; ?>">
+                                                    <i class="fa-solid fa-trash-can"></i> Delete
                                                 </a>
                                             </li>
                                         </ul>
@@ -101,6 +93,17 @@ ob_start(); // Start output buffering
 </div>
 
 <script>
+    
+     function updateSerialNumbers() {
+        const rows = document.querySelectorAll("#patientTableBody .patient-row");
+        rows.forEach((row, index) => {
+            const serialCell = row.querySelector(".serial-number");
+            serialCell.textContent = index + 1; // Update serial number based on index
+        });
+    }
+
+    // Initial call to set serial numbers
+    updateSerialNumbers();
     // Search functionality for filtering table rows
     document.getElementById("patientSearch").addEventListener("input", function() {
         let filter = this.value.toLowerCase();
@@ -142,6 +145,7 @@ ob_start(); // Start output buffering
                         if (data.status === 'success') {
                             alert(data.message);
                             document.getElementById(`patient-row-${patientId}`).remove();
+                            updateSerialNumbers();
                         } else {
                             alert(data.message);
                         }

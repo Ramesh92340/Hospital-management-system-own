@@ -16,7 +16,7 @@ ob_start(); // Start output buffering
 
     <div id="content-wrapper" class="d-flex flex-column bg-white">
         <div id="content">
-            <h1 class="text-center  mb-5"><strong>OPD Patient Details</strong></h1>
+            <h1 class="text-center mb-5"><strong>OPD Patient Details</strong></h1>
 
             <!-- Search Input -->
             <div class="container mb-3">
@@ -41,11 +41,9 @@ ob_start(); // Start output buffering
                         </tr>
                     </thead>
                     <tbody id="patientTableBody">
-                        <?php
-                        $serial_number = 1; // Initialize serial number
-                        foreach ($opd_patients as $patient): ?>
-                            <tr class="text-center" id="patient-row-<?php echo $patient['id']; ?>">
-                                <td><?php echo $serial_number++; ?></td>
+                        <?php foreach ($opd_patients as $patient): ?>
+                            <tr class="text-center patient-row" id="patient-row-<?php echo $patient['id']; ?>">
+                                <td class="serial-number"></td> <!-- Serial number will be set dynamically -->
                                 <td><?php echo htmlspecialchars($patient['name']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['age']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['gender']); ?></td>
@@ -65,8 +63,8 @@ ob_start(); // Start output buffering
                                     }
                                     ?>
                                 </td>
+
                                 <td>
-                                    <!-- Dropdown for Actions -->
                                     <div class="dropdown">
                                         <p class="see_more_actions" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                             . . .
@@ -77,12 +75,11 @@ ob_start(); // Start output buffering
                                             <li><a class="dropdown-item" href="view_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-regular fa-eye"></i> View Details</a></li>
                                             <li>
                                                 <a class="dropdown-item delete-patient"
-                                                    href="delete_patient.php?id=<?php echo $patient['id']; ?>"
-                                                    data-id="<?php echo $patient['id']; ?>">
+                                                   href="delete_patient.php?id=<?php echo $patient['id']; ?>"
+                                                   data-id="<?php echo $patient['id']; ?>">
                                                     <i class="fa-solid fa-trash-can"></i> Delete
                                                 </a>
                                             </li>
-
                                         </ul>
                                     </div>
                                 </td>
@@ -91,16 +88,25 @@ ob_start(); // Start output buffering
                     </tbody>
                 </table>
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 <script>
+    
+    function updateSerialNumbers() {
+        const rows = document.querySelectorAll("#patientTableBody .patient-row");
+        rows.forEach((row, index) => {
+            const serialCell = row.querySelector(".serial-number");
+            serialCell.textContent = index + 1; // Update serial number based on index
+        });
+    }
+
+    // Initial call to set serial numbers
+    updateSerialNumbers();
+
     // Search functionality for filtering table rows
-    document.getElementById("patientSearch").addEventListener("input", function() {
+    document.getElementById("patientSearch").addEventListener("input", function () {
         let filter = this.value.toLowerCase();
         let rows = document.getElementById("patientTableBody").getElementsByTagName("tr");
 
@@ -116,38 +122,42 @@ ob_start(); // Start output buffering
 
             row.style.display = match ? "" : "none";
         });
+
+        updateSerialNumbers(); // Update serial numbers after filtering
     });
 
     // Delete patient functionality with AJAX
     document.querySelectorAll(".delete-patient").forEach(button => {
-        button.addEventListener("click", function(e) {
+        button.addEventListener("click", function (e) {
             e.preventDefault();
 
             if (confirm("Are you sure you want to delete this patient?")) {
                 const patientId = this.getAttribute("data-id");
 
                 fetch('delete_patient.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            id: patientId
-                        }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            alert(data.message);
-                            document.getElementById(`patient-row-${patientId}`).remove();
-                        } else {
-                            alert(data.message);
-                        }
-                    })
-                    .catch(error => {
-                        alert('An error occurred while processing the request.');
-                        console.error('Error:', error);
-                    });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: patientId
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert(data.message);
+                        const row = document.getElementById(`patient-row-${patientId}`);
+                        row.remove(); // Remove the row
+                        updateSerialNumbers(); // Update serial numbers
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('An error occurred while processing the request.');
+                    console.error('Error:', error);
+                });
             }
         });
     });
