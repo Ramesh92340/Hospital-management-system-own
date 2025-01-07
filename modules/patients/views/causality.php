@@ -70,7 +70,13 @@ ob_start(); // Start output buffering
                                             . . .
                                         </p>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <li><a class="dropdown-item" href="add_to_idp.php?id=<?php echo $patient['id']; ?>"><i class="fa-solid fa-plus"></i> Add to IPD</a></li>
+                                             
+                                            <li>
+                                                <a class="dropdown-item" href="add_ipd.php?id=<?php echo $patient['id']; ?>">
+                                                    <i class="fa-solid fa-plus"></i> Add to IPD
+                                                </a>
+                                            </li>
+
                                             <li><a class="dropdown-item" href="edit_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</a></li>
                                             <li><a class="dropdown-item" href="view_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-regular fa-eye"></i> View Details</a></li>
                                             <li>
@@ -93,8 +99,7 @@ ob_start(); // Start output buffering
 </div>
 
 <script>
-    
-     function updateSerialNumbers() {
+    function updateSerialNumbers() {
         const rows = document.querySelectorAll("#patientTableBody .patient-row");
         rows.forEach((row, index) => {
             const serialCell = row.querySelector(".serial-number");

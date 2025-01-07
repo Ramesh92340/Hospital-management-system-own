@@ -70,13 +70,17 @@ ob_start(); // Start output buffering
                                             . . .
                                         </p>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <li><a class="dropdown-item" href="add_to_idp.php?id=<?php echo $patient['id']; ?>"><i class="fa-solid fa-plus"></i> Add to IPD</a></li>
+                                            <li>
+                                                <a class="dropdown-item" href="add_ipd.php?id=<?php echo $patient['id']; ?>">
+                                                    <i class="fa-solid fa-plus"></i> Add to IPD
+                                                </a>
+                                            </li>
                                             <li><a class="dropdown-item" href="edit_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</a></li>
                                             <li><a class="dropdown-item" href="view_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-regular fa-eye"></i> View Details</a></li>
                                             <li>
                                                 <a class="dropdown-item delete-patient"
-                                                   href="delete_patient.php?id=<?php echo $patient['id']; ?>"
-                                                   data-id="<?php echo $patient['id']; ?>">
+                                                    href="delete_patient.php?id=<?php echo $patient['id']; ?>"
+                                                    data-id="<?php echo $patient['id']; ?>">
                                                     <i class="fa-solid fa-trash-can"></i> Delete
                                                 </a>
                                             </li>
@@ -93,7 +97,6 @@ ob_start(); // Start output buffering
 </div>
 
 <script>
-
     function updateSerialNumbers() {
         const rows = document.querySelectorAll("#patientTableBody .patient-row");
         rows.forEach((row, index) => {
@@ -106,7 +109,7 @@ ob_start(); // Start output buffering
     updateSerialNumbers();
 
     // Search functionality for filtering table rows
-    document.getElementById("patientSearch").addEventListener("input", function () {
+    document.getElementById("patientSearch").addEventListener("input", function() {
         let filter = this.value.toLowerCase();
         let rows = document.getElementById("patientTableBody").getElementsByTagName("tr");
 
@@ -128,36 +131,36 @@ ob_start(); // Start output buffering
 
     // Delete patient functionality with AJAX
     document.querySelectorAll(".delete-patient").forEach(button => {
-        button.addEventListener("click", function (e) {
+        button.addEventListener("click", function(e) {
             e.preventDefault();
 
             if (confirm("Are you sure you want to delete this patient?")) {
                 const patientId = this.getAttribute("data-id");
 
                 fetch('delete_patient.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        id: patientId
-                    }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        alert(data.message);
-                        const row = document.getElementById(`patient-row-${patientId}`);
-                        row.remove(); // Remove the row
-                        updateSerialNumbers(); // Update serial numbers
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .catch(error => {
-                    alert('An error occurred while processing the request.');
-                    console.error('Error:', error);
-                });
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            id: patientId
+                        }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            alert(data.message);
+                            const row = document.getElementById(`patient-row-${patientId}`);
+                            row.remove(); // Remove the row
+                            updateSerialNumbers(); // Update serial numbers
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        alert('An error occurred while processing the request.');
+                        console.error('Error:', error);
+                    });
             }
         });
     });
