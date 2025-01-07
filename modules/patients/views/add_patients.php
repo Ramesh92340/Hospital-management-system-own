@@ -27,26 +27,26 @@ ob_start(); // Start output buffering
                 echo '<script>alert("Please fill in all fields correctly.");</script>';
             } else {
                 try {
-                    // Handle document uploads
-                    $documents = [];
-                    if (!empty($_FILES['documents']['name'][0])) {
-                        $target_dir = "../../../assets/uploads/patient_documents/";
+                    // Handle report uploads
+                    $reports = [];
+                    if (!empty($_FILES['reports']['name'][0])) {
+                        $target_dir = "../../../assets/uploads/patient_reports/";
 
                         // Loop through files if multiple files are uploaded
-                        foreach ($_FILES['documents']['name'] as $index => $filename) {
+                        foreach ($_FILES['reports']['name'] as $index => $filename) {
                             $target_file = $target_dir . basename($filename);
-                            if (move_uploaded_file($_FILES['documents']['tmp_name'][$index], $target_file)) {
-                                $documents[] = $target_file;  // Store document file paths
+                            if (move_uploaded_file($_FILES['reports']['tmp_name'][$index], $target_file)) {
+                                $reports[] = $target_file;  // Store report file paths
                             }
                         }
                     }
 
-                    $documents_str = implode(',', $documents);  // Combine file paths into a comma-separated string
+                    $reports_str = implode(',', $reports);  // Combine file paths into a comma-separated string
 
                     // Use the $pdo connection to insert data
                     $stmt = $pdo->prepare(
-                        "INSERT INTO patients_opd (name, age, gender,  doctor, contact, address, medical_history, admission_type, documents) 
-                         VALUES (:name, :age, :gender, :doctor, :contact, :address, :medical_history, :admission_type, :documents)"
+                        "INSERT INTO patients_opd (name, age, gender, doctor, contact, address, medical_history, admission_type, reports) 
+                         VALUES (:name, :age, :gender, :doctor, :contact, :address, :medical_history, :admission_type, :reports)"
                     );
                     $stmt->execute([
                         ':name' => $name,
@@ -57,7 +57,7 @@ ob_start(); // Start output buffering
                         ':address' => $address,
                         ':medical_history' => $medical_history,
                         ':admission_type' => $admission_type,
-                        ':documents' => $documents_str
+                        ':reports' => $reports_str
                     ]);
 
                     echo '<script>alert("Patient data inserted successfully.");</script>';
@@ -104,16 +104,15 @@ ob_start(); // Start output buffering
                                     </select>
                                 </div>
 
-
                                 <div class="col-md-4 mt-5">
                                     <label class="control-label mb-2 field_txt">Phone</label>
                                     <input type="tel" class="form-control field_input_bg" name="contact" required>
                                 </div>
+
                                 <div class="col-md-4 mt-5">
                                     <label class="control-label mb-2 field_txt">Doctor</label>
                                     <input type="text" class="form-control field_input_bg" name="doctor" required>
                                 </div>
-
 
                                 <!-- New Admission Type -->
                                 <div class="col-md-4 mt-5">
@@ -124,10 +123,10 @@ ob_start(); // Start output buffering
                                     </select>
                                 </div>
 
-                                <!-- Document Upload Section -->
+                                <!-- Report Upload Section -->
                                 <div class="col-md-4 mt-5">
-                                    <label class="control-label mb-2 field_txt">Upload Documents</label>
-                                    <input type="file" name="documents[]" class="form-control field_input_bg" multiple>
+                                    <label class="control-label mb-2 field_txt">Upload Reports</label>
+                                    <input type="file" name="reports[]" class="form-control field_input_bg" multiple>
                                 </div>
 
                                 <div class="col-md-4 mt-5">

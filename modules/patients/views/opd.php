@@ -36,7 +36,7 @@ ob_start(); // Start output buffering
                             <th>Contact</th>
                             <th>Address</th>
                             <th>Medical History</th>
-                            <th>Documents</th>
+                            <th>Patient ID</th> 
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -51,18 +51,7 @@ ob_start(); // Start output buffering
                                 <td><?php echo htmlspecialchars($patient['contact']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['address']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['medical_history']); ?></td>
-                                <td>
-                                    <?php
-                                    if (!empty($patient['documents'])) {
-                                        $documents = explode(',', $patient['documents']);
-                                        foreach ($documents as $document) {
-                                            echo "<a href='" . htmlspecialchars($document) . "' download>Download Document</a><br>";
-                                        }
-                                    } else {
-                                        echo "No Documents";
-                                    }
-                                    ?>
-                                </td>
+                                <td>#<?php echo htmlspecialchars($patient['id']); ?></td> 
 
                                 <td>
                                     <div class="dropdown">

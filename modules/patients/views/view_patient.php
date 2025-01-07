@@ -41,38 +41,40 @@ ob_start(); // Start output buffering
                             <div class="d-flex justify-content-between">
                                 <!-- Patient Details Card -->
                                 <div class="card flex-grow-1 me-2" style="border-radius: 10px;">
-                                    <div class="card-header text-black   text-center"><h4>Patient Details</h4> </div>
+                                    <div class="card-header text-black   text-center">
+                                        <h4>Patient Details</h4>
+                                    </div>
                                     <div class="card-body">
                                         <div class="row mb-3">
-                                            <div class="col-sm-3 font-weight-bold">ID</div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-3 font-weight-bold">Patient ID</div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
 
                                             <div class="col-sm-8">#<?php echo htmlspecialchars($patient['id']); ?></div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Name</div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"> <?php echo htmlspecialchars($patient['name']); ?></div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Age</div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"> <?php echo htmlspecialchars($patient['age']); ?></div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Gender</div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"> <?php echo htmlspecialchars($patient['gender']); ?></div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Contact</div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"> <?php echo htmlspecialchars($patient['contact']); ?></div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Address</div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"> <?php echo htmlspecialchars($patient['address']); ?></div>
                                         </div>
                                     </div>
@@ -80,47 +82,75 @@ ob_start(); // Start output buffering
 
                                 <!-- Additional Details Card -->
                                 <div class="card flex-grow-1" style="border-radius: 10px;">
-                                    <div class="card-header text-black  text-center"><h4>Additional Details</h4></div>
+                                    <div class="card-header text-black  text-center">
+                                        <h4>Additional Details</h4>
+                                    </div>
                                     <div class="card-body">
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Doctor</div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"><?php echo htmlspecialchars($patient['doctor']); ?></div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Medical History</div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"><?php echo htmlspecialchars($patient['medical_history']); ?></div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Admission Type</div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"><?php echo htmlspecialchars($patient['admission_type']); ?></div>
                                         </div>
                                         <div class="row mb-3">
-                                            <div class="col-sm-3 font-weight-bold">Documents</div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
-                                            <div class="col-sm-8"> 
+                                            <div class="col-sm-3 font-weight-bold">Reports</div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
+                                            <div class="col-sm-8">
+
+
                                                 <?php
-                                                if (!empty($patient['documents'])) {
-                                                    $documents = explode(',', $patient['documents']);
-                                                    foreach ($documents as $document) {
-                                                        echo "<a href='" . htmlspecialchars($document) . "' download>Download Document</a><br>";
+                                                if (!empty($patient['reports'])) {
+                                                    $reports = explode(',', $patient['reports']);
+                                                    foreach ($reports as $report) {
+                                                        $fileName = basename($report);
+                                                        echo "<a class='download_decration' href='" . htmlspecialchars($report) . "' download>" . htmlspecialchars($fileName) . " <i class='fa fa-download download-icon'></i></a><br>";
                                                     }
                                                 } else {
-                                                    echo "No Documents";
+                                                    echo "No Reports";
                                                 }
                                                 ?>
+
+
+                                                <style>
+                                                    .download_decration {
+                                                        text-decoration: none;
+                                                        color: #000;
+                                                    }
+
+                                                    .download_decration:hover {
+                                                        color: rgb(10, 200, 26);
+                                                        text-decoration: none;
+
+                                                    }
+
+                                                    .download-icon {
+                                                        color: rgb(10, 200, 26);
+                                                    }
+
+                                                    .download-icon:hover {
+                                                        color: rgb(10, 200, 26);
+                                                    }
+                                                </style>
                                             </div>
+
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Created At </div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"><?php echo htmlspecialchars($patient['created_at']); ?></div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Updated At </div>
-                                            <div class="col-sm-1 font-weight-bold"> :  </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"> <?php echo htmlspecialchars($patient['updated_at']); ?></div>
                                         </div>
                                     </div>
@@ -128,6 +158,58 @@ ob_start(); // Start output buffering
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="container my-5">
+                            <div class="card" style="border-radius: 10px;">
+                                <div class="card-header text-black text-center">
+                                    <h4>Patient Reports</h4>
+                                </div>
+                                <div class="card-body">
+                                    <?php
+                                    if (!empty($patient['reports'])) {
+                                        $reports = explode(',', $patient['reports']);
+                                        echo "<div class='row'>";
+                                        foreach ($reports as $report) {
+                                            $fileName = basename($report);
+                                            $fileExt = pathinfo($report, PATHINFO_EXTENSION);
+
+                                            echo "<div class='col-md-3 my-5'>";
+
+                                            // Check if the file is a PDF
+                                            if ($fileExt === 'pdf') {
+                                                echo "<h5>$fileName</h5>";
+                                                echo "<embed src='" . htmlspecialchars($report) . "' width='100%' height='400px' type='application/pdf'>";
+                                            }
+                                            // If it's an image
+                                            elseif (in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif'])) {
+                                                echo "<h5>$fileName</h5>";
+                                                echo "<img src='" . htmlspecialchars($report) . "' alt='$fileName' width='100%' style='max-height: 400px;'>";
+                                            }
+                                            // If it's a text file (or other supported types)
+                                            elseif ($fileExt === 'txt') {
+                                                echo "<h5>$fileName</h5>";
+                                                $fileContent = file_get_contents($report);
+                                                echo "<pre>$fileContent</pre>";
+                                            }
+                                            echo "</div>";
+                                        }
+                                        echo "</div>";
+                                    } else {
+                                        echo "<p class='text-center'>No Reports Available</p>";
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
                     </div>
 
 
