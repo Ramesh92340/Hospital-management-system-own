@@ -29,7 +29,6 @@ ob_start(); // Start output buffering
                     <thead>
                         <tr class="text-center">
                             <th>S.no</th>
-                            <th>Patient ID</th> <!-- New column for Patient ID -->
                             <th>Name</th>
                             <th>Age</th>
                             <th>Gender</th>
@@ -37,7 +36,8 @@ ob_start(); // Start output buffering
                             <th>Contact</th>
                             <th>Address</th>
                             <th>Medical History</th>
-                            <th>Reports</th>
+                            <th>Patient ID</th> 
+                            <!-- <th>Reports</th> -->
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -45,9 +45,8 @@ ob_start(); // Start output buffering
                     <tbody id="patientTableBody">
                         <?php foreach ($casualty_patients as $patient): ?>
                             <tr class="text-center patient-row" id="patient-row-<?php echo $patient['id']; ?>">
-                                <td class="serial-number"></td> <!-- Serial number will be set dynamically -->
-                                <td>#<?php echo htmlspecialchars($patient['id']); ?></td> <!-- Display Patient ID -->
-
+                                <td class="serial-number"></td>  
+                                
                                 <td><?php echo htmlspecialchars($patient['name']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['age']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['gender']); ?></td>
@@ -55,19 +54,20 @@ ob_start(); // Start output buffering
                                 <td><?php echo htmlspecialchars($patient['contact']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['address']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['medical_history']); ?></td>
-                                <td>
+                                <td>#<?php echo htmlspecialchars($patient['id']); ?></td>  
+                                <!-- <td>
                                     <?php
                                     if (!empty($patient['reports'])) {
                                         $reports = explode(',', $patient['reports']);
                                         foreach ($reports as $report) {
-                                            $fileName = basename($report); // Extract the file name from the path
+                                            $fileName = basename($report);  
                                             echo "<a href='" . htmlspecialchars($report) . "' download>" . htmlspecialchars($fileName) . "</a><br>";
                                         }
                                     } else {
                                         echo "No Reports";
                                     }
                                     ?>
-                                </td>
+                                </td> -->
 
 
                                 <td class="text-center">
