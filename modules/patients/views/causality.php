@@ -36,7 +36,7 @@ ob_start(); // Start output buffering
                             <th>Contact</th>
                             <th>Address</th>
                             <th>Medical History</th>
-                            <th>Patient ID</th> 
+                            <th>Patient ID</th>
                             <!-- <th>Reports</th> -->
                             <th>Actions</th>
                         </tr>
@@ -45,8 +45,8 @@ ob_start(); // Start output buffering
                     <tbody id="patientTableBody">
                         <?php foreach ($casualty_patients as $patient): ?>
                             <tr class="text-center patient-row" id="patient-row-<?php echo $patient['id']; ?>">
-                                <td class="serial-number"></td>  
-                                
+                                <td class="serial-number"></td>
+
                                 <td><?php echo htmlspecialchars($patient['name']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['age']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['gender']); ?></td>
@@ -54,13 +54,13 @@ ob_start(); // Start output buffering
                                 <td><?php echo htmlspecialchars($patient['contact']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['address']); ?></td>
                                 <td><?php echo htmlspecialchars($patient['medical_history']); ?></td>
-                                <td>#<?php echo htmlspecialchars($patient['id']); ?></td>  
+                                <td>#<?php echo htmlspecialchars($patient['id']); ?></td>
                                 <!-- <td>
                                     <?php
                                     if (!empty($patient['reports'])) {
                                         $reports = explode(',', $patient['reports']);
                                         foreach ($reports as $report) {
-                                            $fileName = basename($report);  
+                                            $fileName = basename($report);
                                             echo "<a href='" . htmlspecialchars($report) . "' download>" . htmlspecialchars($fileName) . "</a><br>";
                                         }
                                     } else {
@@ -84,7 +84,9 @@ ob_start(); // Start output buffering
                                             </li>
 
                                             <li><a class="dropdown-item" href="edit_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</a></li>
-                                            <li><a class="dropdown-item" href="view_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-regular fa-eye"></i> View Details</a></li>
+                                            <li><a class="dropdown-item" 
+                                            
+                                            href="view_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-regular fa-eye"></i> View Details</a></li>
                                             <li>
                                                 <a class="dropdown-item delete-patient"
                                                     href="delete_patient.php?id=<?php echo $patient['id']; ?>"

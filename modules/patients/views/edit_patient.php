@@ -124,12 +124,12 @@ ob_start(); // Start output buffering
                                         <input type="file" name="documents[]" id="documents" class="form-control field_input_bg" multiple>
                                     </div>
                                     <div class="col-md-4 mt-5">
-                                        <label for="address" class="control-label mb-2 field_txt">Address</label>
-                                        <textarea name="address" id="address" class="form-control field_input_bg" rows="3" required><?php echo htmlspecialchars($patient['address']); ?></textarea>
-                                    </div>
-                                    <div class="col-md-4 mt-5">
                                         <label for="doctor" class="control-label mb-2 field_txt">Doctor</label>
                                         <input type="text" name="doctor" id="doctor" class="form-control field_input_bg" value="<?php echo htmlspecialchars($patient['doctor']); ?>" required>
+                                    </div>
+                                    <div class="col-md-4 mt-5">
+                                        <label for="address" class="control-label mb-2 field_txt">Address</label>
+                                        <textarea name="address" id="address" class="form-control field_input_bg" rows="3" required><?php echo htmlspecialchars($patient['address']); ?></textarea>
                                     </div>
                                     <div class="col-md-4 mt-5">
                                         <label for="medical_history" class="control-label mb-2 field_txt">Medical History</label>

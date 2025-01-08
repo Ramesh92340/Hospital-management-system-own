@@ -20,13 +20,30 @@ ob_start(); // Start output buffering
             $address = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
             $medical_history = filter_var($_POST['medical_history'], FILTER_SANITIZE_STRING);
             $admission_type = filter_var($_POST['admission_type'], FILTER_SANITIZE_STRING);
-            $doctor = filter_var($_POST['doctor'], FILTER_SANITIZE_STRING); // New doctor field
+            $doctor = filter_var($_POST['doctor'], FILTER_SANITIZE_STRING);
 
             // Validate the sanitized inputs
             if (!$name || !$age || !$gender || !$contact || !$address || !$medical_history || !$admission_type || !$doctor) {
                 echo '<script>alert("Please fill in all fields correctly.");</script>';
             } else {
                 try {
+                    // Generate new patient ID
+                    $date = date('Ymd'); // Current date in YYYYMMDD format
+
+                    // Get the highest ID for the current date
+                    $stmt = $pdo->prepare("SELECT id FROM patients_opd WHERE id LIKE :date_prefix ORDER BY id DESC LIMIT 1");
+                    $stmt->execute([':date_prefix' => $date . '%']);
+                    $last_id = $stmt->fetchColumn();
+
+                    if ($last_id) {
+                        $last_number = (int)substr($last_id, -4); // Extract the last 4 digits
+                        $new_number = str_pad($last_number + 1, 4, '0', STR_PAD_LEFT); // Increment and pad with zeros
+                    } else {
+                        $new_number = '0001'; // Start with 0001 if no IDs exist for the current date
+                    }
+
+                    $new_id = $date . '-' . $new_number; // Combine date and incremented number
+
                     // Handle report uploads
                     $reports = [];
                     if (!empty($_FILES['reports']['name'][0])) {
@@ -43,12 +60,13 @@ ob_start(); // Start output buffering
 
                     $reports_str = implode(',', $reports);  // Combine file paths into a comma-separated string
 
-                    // Use the $pdo connection to insert data
+                    // Insert data into the database
                     $stmt = $pdo->prepare(
-                        "INSERT INTO patients_opd (name, age, gender, doctor, contact, address, medical_history, admission_type, reports) 
-                         VALUES (:name, :age, :gender, :doctor, :contact, :address, :medical_history, :admission_type, :reports)"
+                        "INSERT INTO patients_opd (id, name, age, gender, doctor, contact, address, medical_history, admission_type, reports) 
+                         VALUES (:id, :name, :age, :gender, :doctor, :contact, :address, :medical_history, :admission_type, :reports)"
                     );
                     $stmt->execute([
+                        ':id' => $new_id,
                         ':name' => $name,
                         ':age' => $age,
                         ':gender' => $gender,
@@ -60,7 +78,7 @@ ob_start(); // Start output buffering
                         ':reports' => $reports_str
                     ]);
 
-                    echo '<script>alert("Patient data inserted successfully.");</script>';
+                    echo '<script>alert("Patient data inserted successfully. Patient ID: ' . $new_id . '");</script>';
                     header('Location: ' . $_SERVER['PHP_SELF']);
                     exit();
                 } catch (PDOException $e) {
@@ -72,6 +90,7 @@ ob_start(); // Start output buffering
 
     ob_end_flush(); // Flush the output buffer
     ?>
+
 
     <div id="content-wrapper" class="d-flex flex-column bg-white">
 
