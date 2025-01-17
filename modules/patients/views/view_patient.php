@@ -1,5 +1,5 @@
 <?php
-ob_start(); // Start output buffering
+ob_start(); // Start output buffering  
 ?>
 
 <div id="wrapper">
@@ -11,7 +11,8 @@ ob_start(); // Start output buffering
     include "../../../config/db.php";
 
     if (isset($_GET['id']) && !empty($_GET['id'])) {
-        $patient_id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
+        // $patient_id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
+        $patient_id = $_GET['id'];
 
         if ($patient_id) {
             // Fetch patient details

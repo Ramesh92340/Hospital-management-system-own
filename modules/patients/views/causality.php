@@ -83,10 +83,14 @@ ob_start(); // Start output buffering
                                                 </a>
                                             </li>
 
-                                            <li><a class="dropdown-item" href="edit_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</a></li>
-                                            <li><a class="dropdown-item" 
+                                            <li><a class="dropdown-item" href="edit_patient.php?id=<?php echo($patient['id']); ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</a></li>
+                                            <li>
                                             
-                                            href="view_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-regular fa-eye"></i> View Details</a></li>
+                                            <!-- <a class="dropdown-item"   href="view_patient.php?id=<?php echo $patient['id']; ?>"><i class="fa-regular fa-eye"></i> View Details</a></li> -->
+                                            
+
+                                            <a class="dropdown-item"  href="view_patient.php?id=<?php echo urlencode($patient['id']); ?>"><i class="fa-regular fa-eye"></i> View Details</a>
+
                                             <li>
                                                 <a class="dropdown-item delete-patient"
                                                     href="delete_patient.php?id=<?php echo $patient['id']; ?>"
