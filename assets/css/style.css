@@ -5,32 +5,38 @@ button.btn.btn-primary.searchBtn {
   position: relative;
   right: 360px;
 }
+
 input.form-control.bg-light.border-0.small.searchBar {
   color: black;
   background: #f4f5f9 !important;
   padding-left: 40px;
 }
+
 h6.shopHHH {
   color: black;
   font-weight: 600;
   font-size: 15px;
   margin-top: 13px;
 }
+
 span.AdminBtn {
   color: gray;
   margin-top: 24px !important;
   font-size: 14px;
 }
+
 li.nav-item.dropdown.no-arrow {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .sidebar .nav-item .nav-link .img-profile,
 .topbar .nav-item .nav-link .img-profile {
   height: 52px;
   width: 100%;
 }
+
 .p_tag:hover {
   padding-top: 9px;
   padding-bottom: 9px;
@@ -50,16 +56,19 @@ li.nav-item.dropdown.no-arrow {
   font-weight: 500;
   line-height: normal;
 }
+
 a.nav-link.collapsed.anc_tag {
   display: flex;
   align-items: baseline !important;
   justify-content: flex-start;
-  
+
 }
+
 a.nav-link.collapsed.anc_tag:hover {
   display: flex;
   justify-content: flex-start;
 }
+
 p.p_tag:hover {
   display: flex;
   align-items: center;
@@ -116,7 +125,7 @@ p.p_tag:hover {
 
 .table-container {
   display: none;
- 
+
 }
 
 .table-container.active {
@@ -131,7 +140,7 @@ p.p_tag:hover {
   display: block;
 }
 
-.edit_h_tag{
+.edit_h_tag {
   text-align: center;
   margin: 30px 0px;
 }
@@ -139,8 +148,8 @@ p.p_tag:hover {
 
 
 
- 
- 
+
+
 
 
 
@@ -150,65 +159,83 @@ p.p_tag:hover {
 
 /* Default styling for the menu item */
 .menu-item.menu_tag {
-  background-color: transparent; /* Transparent background */
-  transition: all 0.3s ease; /* Smooth transition for hover and active states */
-  display: flex; /* Use Flexbox */
-  justify-content: left; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  background-color: transparent;
+  /* Transparent background */
+  transition: all 0.3s ease;
+  /* Smooth transition for hover and active states */
+  display: flex;
+  /* Use Flexbox */
+  justify-content: left;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
   /* height: 100%;   */
-  padding-top: 15px   ; /* Add padding for better spacing */
+  padding-top: 15px;
+  /* Add padding for better spacing */
   padding-left: 20px;
-  
+
 }
 
 /* Default styling for the menu link */
 .menu-item.menu_tag .menu-link.link_tag {
-  color: black; /* Default text color */
-  text-align: center; /* Center align text */
-  display: flex; /* Use Flexbox */
-  
-  justify-content: center; /* Center text and icon horizontally */
-  align-items: center; /* Center text and icon vertically */
-  padding: 0; /* Remove default padding for alignment */
+  color: black;
+  /* Default text color */
+  text-align: center;
+  /* Center align text */
+  display: flex;
+  /* Use Flexbox */
+
+  justify-content: center;
+  /* Center text and icon horizontally */
+  align-items: center;
+  /* Center text and icon vertically */
+  padding: 0;
+  /* Remove default padding for alignment */
   text-decoration: none !important;
 }
 
 /* Icon inside the menu */
 .menu-item.menu_tag .menu-link.link_tag i {
-  margin-right: 8px; /* Space between icon and text */
-  color: black; /* Default icon color */
+  margin-right: 8px;
+  /* Space between icon and text */
+  color: black;
+  /* Default icon color */
 }
 
 /* Hover effect for the menu item */
 .menu-item.menu_tag:hover {
-  background-color: black; /* Black background on hover */
+  background-color: black;
+  /* Black background on hover */
 }
 
 .menu-item.menu_tag:hover .menu-link.link_tag,
 .menu-item.menu_tag:hover .menu-link.link_tag i {
   text-decoration: none;
-  color: white; /* White text and icon on hover */
+  color: white;
+  /* White text and icon on hover */
 }
 
 /* Active state for the menu item */
 .menu-item.menu_tag.active {
-  background-color: black; /* Black background when active */
-  
+  background-color: black;
+  /* Black background when active */
+
 }
 
 .menu-item.menu_tag.active .menu-link.link_tag,
 .menu-item.menu_tag.active .menu-link.link_tag i {
-  color: white; /* White text and icon when active */
+  color: white;
+  /* White text and icon when active */
 }
 
 
 
 
- 
+
 
 /* Add a custom icon */
 .menu-link.dropdown-toggle::after {
-  
+
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   margin-left: 1.5rem;
@@ -217,63 +244,118 @@ p.p_tag:hover {
 
 
 
-.dropdown-item{
+.dropdown-item {
   font-weight: 700 !important;
 }
 
 
 
-.see_more_actions{
+.see_more_actions {
   font-size: large;
 }
 
-.card-header{
-  background-color:#F4F5F9;
+.card-header {
+  background-color: #F4F5F9;
 }
 
-.viwe_btns{
-  background-color:#F4F5F9;
-border: #b8bbde 1px solid;
-padding:10px 15px;
-border-radius: 8px;
-color: black;
-text-decoration: none;
-}
-
-
-.viwe_btns_back:hover{
-  background-color:#F4F5F9;
-border: rgb(2, 214, 2) 1px solid;
-padding:10px 15px;
-border-radius: 8px;
-color: rgb(2, 214, 2);
-font-weight: 600;
-text-decoration: none;
-}
-
-.viwe_btns_edit:hover{
-  background-color:#F4F5F9;
-border: blue 1px solid;
-padding:10px 15px;
-border-radius: 8px;
-color: blue;
-font-weight: 600;
-text-decoration: none;
-}
-
-.viwe_btns_delete:hover{
-  background-color:#F4F5F9;
-border:  1px solid;
-padding:10px 15px;
-border-radius: 8px;
-font-weight: 600;
-color: red;
-text-decoration: none;
+.viwe_btns {
+  background-color: #F4F5F9;
+  border: #b8bbde 1px solid;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: black;
+  text-decoration: none;
 }
 
 
-.container_dec{
-  border:  black 1px solid !important;
+.viwe_btns_back:hover {
+  background-color: #F4F5F9;
+  border: rgb(2, 214, 2) 1px solid;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: rgb(2, 214, 2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.viwe_btns_edit:hover {
+  background-color: #F4F5F9;
+  border: blue 1px solid;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: blue;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.viwe_btns_delete:hover {
+  background-color: #F4F5F9;
+  border: 1px solid;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: red;
+  text-decoration: none;
+}
+
+
+.container_dec {
+  border: black 1px solid !important;
   padding: 150px !important;
 }
 
+
+.scroll_bar_y {
+  overflow-y: 50px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+#wrapper {
+  height: 100vh !important;
+
+}
+
+
+
+#content-wrapper {
+  flex: 1 !important;
+  /* Takes up available space */
+  overflow-y: auto !important;
+  /* Enables vertical scrolling */
+  height: 85vh !important;
+  /* Sets the height for scrolling */
+  padding: 20px !important;
+  /* Adds padding for aesthetics */
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1) !important;
+  /* Optional for visual effect */
+}
+
+
+.all_black {
+  color: black !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+}
+
+.all_black_icon {
+  color: black !important;
+}
+
+.sidebar-brand {
+  text-decoration: none !important;
+}
+
+.inline_heading {
+  color: rgb(35, 42, 95);
+  font-size: larger;
+  font-weight: 800;
+}

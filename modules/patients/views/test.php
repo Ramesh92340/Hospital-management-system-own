@@ -97,7 +97,7 @@ ob_start(); // Start output buffering
                     $stmt->execute([
                         ':name' => $name,
                         ':age' => $age,
-                        ':gender' => $gender,
+                        ':gender' => $gender,   
                         ':contact' => $contact,
                         ':address' => $address,
                         ':doctor' => $doctor,
@@ -136,22 +136,110 @@ ob_start(); // Start output buffering
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
 
+
                         <div class="row">
-                            <!-- Form fields for patient details -->
                             <div class="col-md-4 mt-5">
                                 <label class="control-label mb-2">Patient Name</label>
                                 <input type="text" class="form-control" name="name" value="<?= htmlspecialchars($patient['name']) ?>" required>
                             </div>
-                            <!-- Other fields similar to the original -->
+                            <div class="col-md-4 mt-5">
+                                <label class="control-label mb-2">Age</label>
+                                <input type="number" class="form-control" name="age" value="<?= htmlspecialchars($patient['age']) ?>" required>
+                            </div>
+                            <div class="col-md-4 mt-5">
+                                <label class="control-label mb-2">Gender</label>
+                                <select name="gender" class="form-control" required>
+                                    <option value="Male" <?= $patient['gender'] === 'Male' ? 'selected' : '' ?>>Male</option>
+                                    <option value="Female" <?= $patient['gender'] === 'Female' ? 'selected' : '' ?>>Female</option>
+                                    <option value="Other" <?= $patient['gender'] === 'Other' ? 'selected' : '' ?>>Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mt-5">
+                                <label class="control-label mb-2">Phone</label>
+                                <input type="tel" class="form-control" name="contact" value="<?= htmlspecialchars($patient['contact']) ?>" required>
+                            </div>
+                            <div class="col-md-4 mt-5">
+                                <label class="control-label mb-2">Doctor</label>
+                                <input type="text" class="form-control" name="doctor" value="<?= htmlspecialchars($patient['doctor']) ?>" required>
+                            </div>
+                            <div class="col-md-4 mt-5">
+                                <label class="control-label mb-2">Admission Type</label>
+                                <select name="admission_type" class="form-control" required>
+                                    <option value="Casualty" <?= $patient['admission_type'] === 'Casualty' ? 'selected' : '' ?>>Casualty</option>
+                                    <option value="OPD" <?= $patient['admission_type'] === 'OPD' ? 'selected' : '' ?>>OPD</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mt-5">
+                                <label class="control-label mb-2">Address</label>
+                                <textarea class="form-control" name="address" rows="4" required><?= htmlspecialchars($patient['address']) ?></textarea>
+                            </div>
+                            <div class="col-md-4 mt-5">
+                                <label class="control-label mb-2">Medical History</label>
+                                <textarea class="form-control" name="medical_history" rows="4" required><?= htmlspecialchars($patient['medical_history']) ?></textarea>
+                            </div>
+                            <div class="col-md-4 mt-5">
+                                <label class="control-label mb-2">Upload New Reports</label>
+                                <input type="file" name="reports[]" class="form-control" multiple>
+                            </div>
+
+
+
+
+
                         </div>
-                        <!-- Patient Reports Section -->
-                        <!-- Your existing code for handling and displaying reports -->
+                        <div class="container my-5">
+                            <div class="card" style="border-radius: 10px;">
+                                <div class="card-header text-black text-center">
+                                    <h4>Patient Reports</h4>
+                                </div>
+                                <div class="card-body">
+                                    <?php
+                                    if (!empty($patient['reports'])) {
+                                        $reports = explode(',', $patient['reports']);
+                                        echo "<div class='row'>";
+                                        foreach ($reports as $report) {
+                                            $fileName = basename($report);
+                                            $fileExt = pathinfo($report, PATHINFO_EXTENSION);
+
+                                            echo "<div class='col-md-3 my-5 text-center'>";
+
+                                            // Check if the file is a PDF
+                                            if ($fileExt === 'pdf') {
+                                                echo "<h5>$fileName</h5>";
+                                                echo "<embed src='" . htmlspecialchars($report) . "' width='100%' height='400px' type='application/pdf'>";
+                                            }
+                                            // If it's an image
+                                            elseif (in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif'])) {
+                                                echo "<h5>$fileName</h5>";
+                                                echo "<img src='" . htmlspecialchars($report) . "' alt='$fileName' width='100%' style='max-height: 400px;'>";
+                                            }
+                                            // If it's a text file (or other supported types)
+                                            elseif ($fileExt === 'txt') {
+                                                echo "<h5>$fileName</h5>";
+                                                $fileContent = file_get_contents($report);
+                                                echo "<pre>$fileContent</pre>";
+                                            }
+
+                                            // Delete button
+                                            echo "<a href='edit_patient.php?id={$patient_id}&delete_report=" . urlencode($report) . "' class='btn btn-danger btn-sm mt-3'>Delete</a>";
+                                            echo "</div>";
+                                        }
+                                        echo "</div>";
+                                    } else {
+                                        echo "<p class='text-center'>No Reports Available</p>";
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div> 
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <?php include "../../../includes/footer.php"; ?>
+ 
 </div>
 <?php ob_end_flush(); ?>
+
+ 

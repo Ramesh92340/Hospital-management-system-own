@@ -11,11 +11,12 @@ ob_start(); // Start output buffering
     // Capture the referrer URL or fallback to dashboard
     $referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../../../dashboard.php';
 
-    if (isset($_GET['id']) && !empty($_GET['id'])) {
-        $patient_id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
+    if (isset($_GET['id'])) {
+        $patient_id = $_GET['id'];
 
-        // Validate the ID format (YYYYMMDD-XXXX)
-        if (preg_match('/^\d{8}-\d{4}$/', $patient_id)) {
+        // Validate the ID format (YYMMDD-XXXXXX)
+        if (preg_match('/^[A-Z]{2}\d{6}\d{6}$/', $patient_id)) {
+
             try {
                 // Fetch patient details
                 $stmt = $pdo->prepare("SELECT * FROM patients_opd WHERE id = :id");
@@ -238,6 +239,8 @@ ob_start(); // Start output buffering
         </div>
     </div>
 
-    <?php include "../../../includes/footer.php"; ?>
+ 
 </div>
 <?php ob_end_flush(); ?>
+
+ 

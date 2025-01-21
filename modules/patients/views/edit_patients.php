@@ -156,5 +156,5 @@ ob_start(); // Start output buffering
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <?php include "../../../includes/footer.php"; ?>
+    <!-- <?php include "../../../includes/footer.php"; ?> -->
 </div>

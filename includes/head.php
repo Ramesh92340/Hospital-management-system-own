@@ -30,7 +30,7 @@ ob_start(); // Start output buffering
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-     
+
 </head>
 
 <body>
@@ -38,32 +38,15 @@ ob_start(); // Start output buffering
     <!-- <body data-layout="horizontal" data-topbar="light"> -->
 
     <!-- Begin page -->
-    <div id="layout-wrapper" >
+    <div id="layout-wrapper">
 
 
-        <header id="page-topbar">
+        <header id="page-topbar" style="position: fixed; top: 0; left: 60px; width: calc(100% - 60px); z-index: 1000; background: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
             <div class="navbar-header">
-
-
-       <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow ">
-                    
-
-                    <!-- Sidebar Toggle (Topbar) -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar shadow">
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
-                    <!-- Topbar Search -->
-                    <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <button class="btn btn-primary searchBtn" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                            <input type="text" class="form-control searchhh bg-light border-0 small searchBar" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                            </div>
-                        </div>
-                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

@@ -1,3 +1,6 @@
+ 
+
+
 <?php
 ob_start(); // Start output buffering
 ?>
@@ -15,6 +18,8 @@ ob_start(); // Start output buffering
     ?>
 
     <div id="content-wrapper" class="d-flex flex-column bg-white">
+
+    
         <div id="content">
             <h1 class="text-center mb-5"><strong>Casualty Patient Details</strong></h1>
 
@@ -24,7 +29,7 @@ ob_start(); // Start output buffering
             </div>
 
             <!-- Casualty Patients Table -->
-            <div class="container">
+            <div class="container  scroll_bar_y"    >
                 <table class="table table-bordered">
                     <thead>
                         <tr class="text-center">
@@ -42,7 +47,7 @@ ob_start(); // Start output buffering
                         </tr>
                     </thead>
 
-                    <tbody id="patientTableBody">
+                    <tbody id="patientTableBody"  >
                         <?php foreach ($casualty_patients as $patient): ?>
                             <tr class="text-center patient-row" id="patient-row-<?php echo $patient['id']; ?>">
                                 <td class="serial-number"></td>
