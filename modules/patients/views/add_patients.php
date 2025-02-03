@@ -29,7 +29,8 @@ ob_start(); // Start output buffering
             $medical_history = filter_var($_POST['medical_history'], FILTER_SANITIZE_STRING);
             $fee = filter_var($_POST['fee'], FILTER_VALIDATE_FLOAT);
             $discount = filter_var($_POST['discount'], FILTER_VALIDATE_FLOAT);
-            
+            $final_fee = filter_var($_POST['final_fee'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
             // Validate the sanitized inputs
             if (!$name || !$age || !$gender || !$guardian_name || !$contact || !$whatsapp_number || !$address || !$problem || !$doctor || !$referred_by || !$remarks || !$admission_type || !$medical_history || !$fee || !$discount) {
                 echo '<script>alert("Please fill in all fields correctly.");</script>';
@@ -56,7 +57,7 @@ ob_start(); // Start output buffering
                     // Handle report uploads
                     $reports = [];
                     if (!empty($_FILES['reports']['name'][0])) {
-                        $target_dir = "../../../assets/uploads/patient_reports/";
+                        $target_dir = "../../../assets/uploads/patient_reports/";   
     
                         // Loop through files if multiple files are uploaded
                         foreach ($_FILES['reports']['name'] as $index => $filename) {
@@ -143,7 +144,7 @@ ob_start(); // Start output buffering
 
                                 <div class="col-md-3 mt-5">
                                     <label class="control-label mb-2 field_txt">Father/Guardian</label>
-                                    <input type="text" class="form-control field_input_bg" name="guardian_name" required>
+                                    <input type="text" class="form-control field_input_bg" name="guardian_name"  >
                                 </div>
 
                                 <div class="col-md-3 mt-5">
@@ -153,32 +154,32 @@ ob_start(); // Start output buffering
 
                                 <div class="col-md-3 mt-5">
                                     <label class="control-label mb-2 field_txt">WhatsApp Number</label>
-                                    <input type="tel" class="form-control field_input_bg" name="whatsapp_number" required>
+                                    <input type="tel" class="form-control field_input_bg" name="whatsapp_number"  >
                                 </div>
 
                                 <div class="col-md-3 mt-5">
                                     <label class="control-label mb-2 field_txt">Address</label>
-                                    <textarea class="form-control field_input_bg" name="address" rows="1" required></textarea>
+                                    <textarea class="form-control field_input_bg" name="address" rows="1"  ></textarea>
                                 </div>
 
                                 <div class="col-md-3 mt-5">
                                     <label class="control-label mb-2 field_txt">Problem</label>
-                                    <input type="text" class="form-control field_input_bg" name="problem" required>
+                                    <input type="text" class="form-control field_input_bg" name="problem"  >
                                 </div>
 
                                 <div class="col-md-3 mt-5">
                                     <label class="control-label mb-2 field_txt">Doctor</label>
-                                    <input type="text" class="form-control field_input_bg" name="doctor" required>
+                                    <input type="text" class="form-control field_input_bg" name="doctor"  >
                                 </div>
 
                                 <div class="col-md-3 mt-5">
                                     <label class="control-label mb-2 field_txt">Referred By</label>
-                                    <input type="text" class="form-control field_input_bg" name="referred_by" required>
+                                    <input type="text" class="form-control field_input_bg" name="referred_by"  >
                                 </div>
 
                                 <div class="col-md-3 mt-5">
                                     <label class="control-label mb-2 field_txt">Remarks</label>
-                                    <input type="text" class="form-control field_input_bg" name="remarks" required>
+                                    <input type="text" class="form-control field_input_bg" name="remarks"  >
                                 </div>
 
                                 <div class="col-md-3 mt-5">
@@ -196,7 +197,7 @@ ob_start(); // Start output buffering
 
                                 <div class="col-md-3 mt-5">
                                     <label class="control-label mb-2 field_txt">Medical History</label>
-                                    <textarea class="form-control field_input_bg" name="medical_history" rows="1" required></textarea>
+                                    <textarea class="form-control field_input_bg" name="medical_history" rows="1"  ></textarea>
                                 </div>
 
                                 <div class="col-md-3 mt-5">
@@ -211,7 +212,9 @@ ob_start(); // Start output buffering
 
                                 <div class="col-md-3 mt-5">
                                     <label class="control-label mb-2 field_txt">Final Amount</label>
-                                    <input type="text" class="form-control field_input_bg" id="final_amount" readonly>
+                                     
+                                    <input type="text" class="form-control field_input_bg" id="final_amount" name="final_fee" readonly>
+
                                 </div>
 
                                 <div class="col-md-3 mt-5">

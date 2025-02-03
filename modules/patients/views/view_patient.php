@@ -60,6 +60,11 @@ ob_start(); // Start output buffering
                                             <div class="col-sm-8"> <?php echo htmlspecialchars($patient['age']); ?></div>
                                         </div>
                                         <div class="row mb-3">
+                                            <div class="col-sm-3 font-weight-bold">Father/Guardian</div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
+                                            <div class="col-sm-8"> <?php echo htmlspecialchars($patient['guardian_name']); ?></div>
+                                        </div>
+                                        <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Gender</div>
                                             <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"> <?php echo htmlspecialchars($patient['gender']); ?></div>
@@ -69,6 +74,11 @@ ob_start(); // Start output buffering
                                             <div class="col-sm-3 font-weight-bold">Contact</div>
                                             <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"> <?php echo htmlspecialchars($patient['contact']); ?></div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3 font-weight-bold">Whatsapp</div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
+                                            <div class="col-sm-8"> <?php echo htmlspecialchars($patient['whatsapp_number']); ?></div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Address</div>
@@ -88,6 +98,21 @@ ob_start(); // Start output buffering
                                             <div class="col-sm-3 font-weight-bold">Doctor</div>
                                             <div class="col-sm-1 font-weight-bold"> : </div>
                                             <div class="col-sm-8"><?php echo htmlspecialchars($patient['doctor']); ?></div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3 font-weight-bold">Problem </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
+                                            <div class="col-sm-8"><?php echo htmlspecialchars($patient['problem']); ?></div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3 font-weight-bold">Referred By </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
+                                            <div class="col-sm-8"><?php echo htmlspecialchars($patient['referred_by']); ?></div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3 font-weight-bold">Remarks </div>
+                                            <div class="col-sm-1 font-weight-bold"> : </div>
+                                            <div class="col-sm-8"><?php echo htmlspecialchars($patient['remarks']); ?></div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Medical History</div>
@@ -116,8 +141,6 @@ ob_start(); // Start output buffering
                                                     echo "No Reports";
                                                 }
                                                 ?>
-
-
                                                 <style>
                                                     .download_decration {
                                                         text-decoration: none;
@@ -141,6 +164,7 @@ ob_start(); // Start output buffering
                                             </div>
 
                                         </div>
+
                                         <div class="row mb-3">
                                             <div class="col-sm-3 font-weight-bold">Created At </div>
                                             <div class="col-sm-1 font-weight-bold"> : </div>
@@ -152,10 +176,40 @@ ob_start(); // Start output buffering
                                             <div class="col-sm-8"> <?php echo htmlspecialchars($patient['updated_at']); ?></div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="container-fluid my-2">
+ 
+                            <div class="card flex-grow-1 me-2 " style="border-radius: 10px;">
+                                <div class="card-header text-black  text-center">
+                                    <h4> Billing Details</h4>
+                                </div>
+
+                                <div class="px-4 py-3">
+                                    <div class="row mb-3 d-flex flex-row justify-content-between">
+                                        <div class="col-sm-8 font-weight-bold">Fee</div>
+                                        <div class="col-sm-1 font-weight-bold">:</div>
+                                        <div class="col-sm-3 d-flex justify-content-end"><?php echo htmlspecialchars($patient['fee']); ?>/-</div>
+                                    </div>
+                                    <div class="row mb-3 d-flex flex-row justify-content-between">
+                                        <div class="col-sm-8 font-weight-bold">Discount (%)</div>
+                                        <div class="col-sm-1 font-weight-bold">:</div>
+                                        <div class="col-sm-3 d-flex justify-content-end"><?php echo htmlspecialchars($patient['discount']); ?>/-</div>
+                                    </div>
+                                    <div class="row mb-3 d-flex flex-row justify-content-between">
+                                        <div class="col-sm-8 font-weight-bold">Final Amount</div>
+                                        <div class="col-sm-1 font-weight-bold">:</div>
+                                        <div class="col-sm-3 d-flex justify-content-end"><?php echo htmlspecialchars($patient['final_fee']); ?>/-</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
 
 
                         <div class="container my-5">
@@ -200,7 +254,7 @@ ob_start(); // Start output buffering
                                 </div>
                             </div>
                         </div>
- 
+
                     </div>
                 </div>
 </div>
@@ -217,6 +271,11 @@ ob_start(); // Start output buffering
 
 ?>
 </div>
+<script>
+    function printPatientDetails() {
+        window.print();
+    }
+</script>
 
 <?php
 ob_end_flush(); // Flush the output buffer

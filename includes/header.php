@@ -30,7 +30,7 @@ ob_start(); // Start output buffering
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-     
+
 </head>
 
 <body>
@@ -38,15 +38,15 @@ ob_start(); // Start output buffering
     <!-- <body data-layout="horizontal" data-topbar="light"> -->
 
     <!-- Begin page -->
-    <div id="layout-wrapper" >
+    <div id="layout-wrapper">
 
 
         <header id="page-topbar">
             <div class="navbar-header">
 
 
-       <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow ">
-                    
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow ">
+
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

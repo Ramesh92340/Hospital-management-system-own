@@ -25,6 +25,7 @@
     <!-- Content will be updated dynamically -->
 </ul>
 
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -65,7 +66,12 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="patientsDropdown">
                         <li>
-                            <a class="dropdown-item   " href="/Hospital-management-system-own/modules/patients/views/add_patients.php"><i class="fa-solid fa-plus"></i>  Add Patient</a>
+ 
+                            <a class="dropdown-item  " href="/Hospital-management-system-own/modules/patients/views/add_patients.php">
+  <i class="fa-solid fa-plus"></i> Add Patient
+</a>
+
+
                         </li>
                         <li>
                             <a class="dropdown-item  " href="/Hospital-management-system-own/modules/patients/views/causality.php"><i class="fa-solid fa-eye"></i> View causality</a>
@@ -78,13 +84,22 @@
                         </li>
                     </ul>
                 </li>
-                <li class="menu-item menu_tag">
-                    <a class="menu-link collapsed link_tag" href="/medical/add_patient.php">
-                        <p class="menu-content">
-                            <i class="fa-solid fa-user-plus"></i>
-                            Add Patient
+                <li class="menu-item dropdown menu_tag  ">
+                    <a class="menu-link dropdown-toggle link_tag  " href="#" id="patientsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <p class="menu-content  ">
+                            <i class="fa-solid fa-users"></i>
+                            Doctors
                         </p>
                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="patientsDropdown">
+                        <li>
+                            <a class="dropdown-item   " href="/Hospital-management-system-own/modules/staff/views/add_doctor.php"><i class="fa-solid fa-plus"></i>  Add Doctor</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item  " href="/Hospital-management-system-own/modules/staff/views/doctors_list.php"><i class="fa-solid fa-eye"></i> View Doctor</a>
+                        </li>
+                         
+                    </ul>
                 </li>
             `,
             lab: `
