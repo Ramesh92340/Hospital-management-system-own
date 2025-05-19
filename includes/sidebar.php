@@ -1,4 +1,4 @@
-<!-- Category Sidebar -->
+ 
 <ul class="navbar-nav category-sidebar sidebar-dark accordion" id="categorySidebar" style="background-color: #e8ecef; width: 60px; position: fixed; top: 0; bottom: 0; left: 0;">
     <li class="nav-item ">
         <a class="nav-link text-center category-link " href="#" data-category="pharmacy">
@@ -68,8 +68,8 @@
                         <li>
  
                             <a class="dropdown-item  " href="/Hospital-management-system-own/modules/patients/views/add_patients.php">
-  <i class="fa-solid fa-plus"></i> Add Patient
-</a>
+                            <i class="fa-solid fa-plus"></i> Add Patient
+                            </a>
 
 
                         </li>
